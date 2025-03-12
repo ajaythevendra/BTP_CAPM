@@ -1,0 +1,118 @@
+GET http://localhost:4004/odata/v4/CatalogService
+
+###Get the service document
+http://localhost:4004/odata/v4/CatalogService
+
+###Get service metadata document
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###Get all Employee Data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+###Get single employee data by KEY (ID)
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19947FB
+
+###Get the total count of all employees - $count
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+
+###Get the data chunk by chunk = pagination = $top, $skip
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=5
+
+###Filtering data based on condition - $filter
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'My Bank of New York'
+
+###Pattern based filtering
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+
+###Select particular column data - $select
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=nameFirst,nameLast,loginName
+
+
+###Create new employee with our data payload - POST
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+  "nameFirst": "Christiano",
+  "nameMiddle": "M",
+  "nameLast": "Ronaldo",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "loginName": "CHRISRL",
+  "accountNumber": "32109876",
+  "bankId": "66665555",
+  "bankName": "My Bank of London"
+}
+
+
+###Get the employee data which was just created
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/d1b3ff3c-3306-46ad-94fd-c71950303cc7
+
+###PUT request should not do 
+PUT http://localhost:4004/odata/v4/CatalogService/EmployeeSet/08c1d7bf-cc93-4679-be81-0f5951d89c57
+Content-Type: application/json
+{
+  "salaryAmount" : 5360.88,
+  "Currency_code" : "INR"
+}
+
+###Update employee data - PATCH
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/d1b3ff3c-3306-46ad-94fd-c71950303cc7
+Content-Type: application/json
+
+{
+    "nameFirst": "Ajay",
+    "salaryAmount":100000,
+    "Currency_code": "EUR",
+    "nameInitials": "Portugal",
+    "phoneNumber": "+918810504555",
+  "email": "chris.ronaldo@gmail.com"
+}
+
+###Delete data from DB using Service - DELETE
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/c6f01a2c-b253-407d-ad13-06cff8c03ebf
+
+
+
+###Get the data from CDS view
+http://localhost:4004/odata/v4/CatalogService/ProductSet
+
+###Load single product by id
+http://localhost:4004/odata/v4/CatalogService/ProductSet/74867AD200E41EDBA5D8B06B26EBA052
+
+###Get me the order where this product was used - lazy loading
+http://localhost:4004/odata/v4/CatalogService/ProductSet/74867AD200E41EDBA5D8B06B26EBA052/To_Items
+
+
+###Get product and item data together in single call
+http://localhost:4004/odata/v4/CatalogService/ProductSet/74867AD200E41EDBA5D8B06B26EBA052?$expand=To_Items
+
+
+###Get all PO
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###Get Single PO
+http://localhost:4004/odata/v4/CatalogService/POs/02BD2137-0890-1EEA-A6C2-BB55C1978999
+
+###Get PO with its items
+http://localhost:4004/odata/v4/CatalogService/POs/02BD2137-0890-1EEA-A6C2-BB55C1978999?$expand=Items
+
+###Get Single PO
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC30052/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###Get function data for largest order
+http://localhost:4004/odata/v4/CatalogService/largestOrder()
+
+###Get the service document - v2
+http://localhost:4004/v2/odata/v4/CatalogService
+
+###Get service metadata document - v2
+http://localhost:4004/v2/odata/v4/CatalogService/$metadata
+
+###Get all Employee Data - v2
+http://localhost:4004/v2/odata/v4/CatalogService/EmployeeSet
