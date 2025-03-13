@@ -29,8 +29,9 @@ module.exports = cds.service.impl( async function(){
             const tx = cds.tx(req);
             //UPDATE dbtab set grossamount = current + 20k WHERE ID = key
             await tx.update(POs).with({
-                GROSS_AMOUNT: { '+=' : 20000 }
+                GROSS_AMOUNT: { '+=' : 20000 }, NOTE: "Boosted!!"
             }).where(ID);
+            return "Boost was success!";
         } catch (error) {
             return "Error " + error.toString();
         }

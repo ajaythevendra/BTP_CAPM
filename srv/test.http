@@ -96,11 +96,14 @@ http://localhost:4004/odata/v4/CatalogService/POs
 ###Get Single PO
 http://localhost:4004/odata/v4/CatalogService/POs/02BD2137-0890-1EEA-A6C2-BB55C1978999
 
+###Get Single PO
+http://localhost:4004/odata/v4/CatalogService/POs/02BD2137-0890-1EEA-A6C2-BB55C1978999
+
 ###Get PO with its items
 http://localhost:4004/odata/v4/CatalogService/POs/02BD2137-0890-1EEA-A6C2-BB55C1978999?$expand=Items
 
 ###Get Single PO
-POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC30052/CatalogService.boost
+POST http://localhost:4004/odata/v4/CatalogService/POs/02BD2137-0890-1EEA-A6C2-BB55C1978999/CatalogService.boost
 Content-Type: application/json
 
 {}
